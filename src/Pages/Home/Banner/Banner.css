@@ -1,0 +1,25 @@
+.screen {
+    height: 95vh;
+}
+
+.hero {
+    background-image: url(../../../Pictures/img/banner.jpg);
+    font-family: "Ridez", Sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.col {
+    color: aliceblue;
+
+}
+
+
+
+@media only screen and (max-width:576px) {
+    .col {}
+}
+
+@media only screen and (min-width: 577px) and (max-width:992px) {
+    .col {}
+}
