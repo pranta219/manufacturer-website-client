@@ -1,15 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import SocialLogin from '../Login/SocialLogin/SocialLogin';
+
 
 const Register = () => {
 
-    const handleRegister = event => {
-        event.preventDefault()
-        const name = event.target.name.value
-        const email = event.target.email.value
-        const password = event.target.password.value
+    const navigate = useNavigate()
+    const navigateLogin = event => {
+        navigate('/login')
+    }
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+    const handleRegister = async (event) => {
+        event.preventDefault();
+        const name = event.target.name.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        // const agree = event.target.terms.checked;
 
 
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+        console.log('Updated profile');
+        navigate('/home');
     }
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -41,8 +61,10 @@ const Register = () => {
                         </button>
                     </div>
                 </form>
-                <p className="mt-8 text-xs font-light text-center text-gray-700">You have an account? <Link to='/login'
+                <p className="mt-8 text-xs font-light text-center text-gray-700">You have an account? <Link onClick={navigateLogin} to='/login'
                     className="font-medium text-purple-600 hover:underline">Login Here</Link></p>
+
+                <SocialLogin></SocialLogin>
             </div>
         </div>
     );
