@@ -18,7 +18,7 @@ const Banner = () => {
                     <p class="py-6">High modulus carbon frame produces aerodynamic efficiency and stiffness
                         through the use of kammtail shaped tubes.</p>
                     <Link to="/login" className="btn btn-primary">SHOP NOW </Link>
-                    <button className="ml-2 btn btn-text btn-outline btn-primary"> EXPLORE PRODUCT</button>
+                    <Link to='/product' className="ml-2 btn btn-text btn-outline btn-primary"> EXPLORE PRODUCT</Link>
                 </div>
             </div >
         </div >

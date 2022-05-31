@@ -9,6 +9,9 @@ const Login = () => {
     const emailRef = useRef('')
     const passwordRef = useRef('')
     const navigate = useNavigate()
+    const location = useLocation()
+
+    let from = location.state?.from?.pathname || "/"
 
     const [
         signInWithEmailAndPassword,
@@ -20,7 +23,7 @@ const Login = () => {
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth)
 
     if (user) {
-        navigate('/home')
+        navigate(from, { replace: true })
     }
 
     const handleSubmit = event => {
