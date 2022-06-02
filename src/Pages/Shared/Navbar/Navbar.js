@@ -32,13 +32,12 @@ const Navbar = () => {
                     </div>
                     <a href='/' className="btn btn-ghost normal-case text-xl"><img className='logo w-20 h-15' src={logo} alt="" /></a>
                 </div>
-                <div class="navbar-center hidden lg:flex">
-                    <ul class="menu menu-horizontal p-0">
+                <div className="navbar-center hidden lg:flex">
+                    <ul className="menu menu-horizontal p-0">
                         <li><Link to='/home'>Home</Link></li>
                         <li tabindex="0">
                             <Link to='/about'>
                                 My Portfolio
-
                             </Link>
                         </li>
                         <li><Link to='/blog'>Blog</Link></li>
@@ -46,10 +45,17 @@ const Navbar = () => {
                 </div>
                 <div class="navbar-end">
                     {
+                        user && <div className="avatar online placeholder">
+                            <div className="bg-neutral-focus text-neutral-content rounded-full w-16">
+                                <span className="text-1xl btn"> <Link to='/dashboard'>User <br />Active</Link></span>
+                            </div>
+                        </div>
+                    }
+                    {
                         user ?
                             <Link onClick={handleSingOut} to='' className='btn'>Sing out</Link>
                             :
-                            <Link to="/login" class="btn ">Login</Link>}
+                            <Link to="/login" className="btn ">Login</Link>}
                 </div>
             </div>
         </div>
