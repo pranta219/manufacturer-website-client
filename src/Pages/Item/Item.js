@@ -1,12 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Item = ({ item }) => {
-    const { name, img, price, description } = item
+    const { id, name, img, price, description } = item
+
+    const navigate = useNavigate()
+    const navigateToItemDetail = id => {
+        navigate(`/item/${id}`)
+    }
     return (
 
         <div >
-
             <div className="max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
                 <img className="p-8 rounded-t-lg" src={img} alt="product image" />
                 <div className="px-5 pb-5">
@@ -27,7 +31,7 @@ const Item = ({ item }) => {
                     </div>
                     <div className="flex justify-between items-center">
                         <span className="text-3xl font-bold text-gray-900 dark:text-white">${price}</span>
-                        <Link to='/product' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</Link>
+                        <Link to='/product' onClick={() => navigateToItemDetail(id)} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</Link>
                     </div>
                 </div>
             </div>
